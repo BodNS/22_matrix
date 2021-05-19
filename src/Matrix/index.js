@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {Start, Stop, Reset} from './functions';
 import { format, subSeconds, endOfDay } from 'date-fns';
+import matrix_styles from './matrix.module.css';
 
 export default function Clock () {
 const [clock, setClock] = useState(endOfDay(new Date())); 
@@ -17,13 +17,17 @@ useEffect(() => {
     }
   }, [isRun, clock]);
 
+  
 return (
-    <div>
-        <h1>{format(clock, 'HH:mm:ss')}</h1>
-        <button onClick={Start}>Start</button>
-        <button onClick={Stop}>Stop</button>
-        <button onClick={Reset}>Reset</button>
+    <div className={matrix_styles.wrapper}>
+        <h1 className={matrix_styles.numb}>{format(clock, 'HH:mm:ss')}</h1>
+        <div className={matrix_styles.btn}>
+          <button onClick={() => setIsRun(!isRun)}>
+                                  {isRun ? 'Stop':'Start'}</button>
+          <button onClick={() => setClock(endOfDay(new Date()))}>Reset</button>
+        </div>
     </div>
 )
 
 }
+
