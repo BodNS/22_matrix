@@ -21,10 +21,11 @@ useEffect(() => {
 return (
     <div className={matrix_styles.wrapper}>
         <h1 className={matrix_styles.numb}>{format(clock, 'HH:mm:ss')}</h1>
-        <div className={matrix_styles.btn}>
-          <button onClick={() => setIsRun(!isRun)}>
+        <div className={matrix_styles.btnWrapper}>
+          <button className={matrix_styles.btn} onClick={() => setIsRun(!isRun)}>
                                   {isRun ? 'Stop':'Start'}</button>
-          <button onClick={() => setClock(endOfDay(new Date()))}>Reset</button>
+          <button className={matrix_styles.btn} onClick={() => {setClock(endOfDay(new Date()));
+                                  setIsRun(false)}}>Reset</button>
         </div>
     </div>
 )
